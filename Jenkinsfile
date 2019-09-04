@@ -21,7 +21,7 @@ stage('Publish') {
 steps{
 script {
 docker.withRegistry( '', registryCredential ) {
-sh 'docker push khurram88/backend-app:test'
+sh 'sudo docker push khurram88/backend-app'
 }
 }
 }
