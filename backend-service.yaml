@@ -1,0 +1,32 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: python-backend
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        tier: backend
+        app: dice
+    spec:
+     containers:
+     - name: backend
+       image: khurram88/backend-app
+       ports:
+       - containerPort: 8080
+         name: tcp
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: node-be
+spec:
+  type: ClusterIP
+  selector:
+    tier: backend
+    app: dice
+  ports:
+  - protocol: TCP
+    port: 8080
+    targetPort: 8080
